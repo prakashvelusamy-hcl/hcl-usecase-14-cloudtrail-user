@@ -41,9 +41,7 @@ resource "aws_iam_policy" "cloudtrail_policy" {
           "logs:PutLogEvents",
           "logs:CreateLogStream"
         ]
-        Resource = [
-          "arn:aws:logs:us-west-2:123456789012:log-group:MyCloudWatchLogGroup:*" 
-        ]
+        Resource = [var.cloud_watch_logs_group_arn]
       },
       {
         Effect   = "Allow"
