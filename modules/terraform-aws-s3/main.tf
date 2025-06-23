@@ -5,9 +5,5 @@ resource "aws_s3_bucket" "log_bucket" {
   versioning {
     enabled = true
   }
-
-  lifecycle {
-    prevent_destroy = true
-  }
-  tag  = var.project_tag
+  tags  = var.project_tag
 }
