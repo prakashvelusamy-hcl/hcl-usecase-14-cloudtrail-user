@@ -13,6 +13,7 @@ type = string
 
 variable "aws_region" {
 description = "The region we are creating the resources"
+type = string
 }
 
 variable "metric_name" {
