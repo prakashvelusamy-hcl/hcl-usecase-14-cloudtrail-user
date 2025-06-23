@@ -6,5 +6,6 @@ project_tag = var.project_tag
 module "cloud_trail" {
 source = "./modules/terraform-aws-cloudtrail"
 cloud_trail_bucket_name =var.cloud_trail_bucket_name
+cloud_trail_name = var.cloud_trail_name
 project_tag = var.project_tag
 }
