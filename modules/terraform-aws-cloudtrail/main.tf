@@ -6,7 +6,7 @@ resource "aws_cloudtrail" "main" {
   enable_log_file_validation    = true
 
   # Optional: You can enable logging for CloudWatch Logs
-  cloud_watch_logs_group_arn    = "arn:aws:logs:us-west-2:123456789012:log-group:MyCloudWatchLogGroup"
+  cloud_watch_logs_group_arn    = var.cloud_watch_logs_group_arn
   cloud_watch_logs_role_arn     = aws_iam_role.cloudtrail_role.arn
 
   # Optional: Enable logging for S3 events
