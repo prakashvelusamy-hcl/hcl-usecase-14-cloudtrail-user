@@ -138,11 +138,18 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
+
       - name: Terraform Plan
         id: plan
-        run: |
-          terraform plan -no-color -input=false -out=tfplan.binary
-          terraform show -json tfplan.binary > tfplan.json
+        if: github.event_name == 'pull_request'
+        run: terraform plan -no-color -input=false
+        continue-on-error: true
+        
+      - name: Upload tfplan.json artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan
+          path: tfplan.json
 
       # - name: Upload tfplan.json artifact
       #   uses: actions/upload-artifact@v4
