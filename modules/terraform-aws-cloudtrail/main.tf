@@ -5,8 +5,8 @@ resource "aws_cloudtrail" "main" {
   is_multi_region_trail         = false
   enable_log_file_validation    = true
 
-  cloud_watch_logs_group_arn    =var.cloud_watch_logs_group_arn
-  cloud_watch_logs_role_arn     = "arn:aws:logs:ap-south-1:495599733393:log-group:/aws/cloudtrail/Prakash-cloudtrail:*"
+  cloud_watch_logs_group_arn    = var.cloud_watch_logs_group_arn
+  cloud_watch_logs_role_arn     = aws_iam_role.cloudtrail_role.arn
 
   event_selector {
     read_write_type              = "All"
@@ -19,4 +19,3 @@ resource "aws_cloudtrail" "main" {
     aws_iam_role_policy_attachment.cloudtrail_policy_attachment,
   ]
 }
-

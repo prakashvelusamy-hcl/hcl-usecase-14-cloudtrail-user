@@ -5,11 +5,11 @@ resource "aws_iam_role" "cloudtrail_role" {
     Version = "2012-10-17"
     Statement = [
       {
-        Effect = "Allow"
+        Effect    = "Allow"
+        Action    = "sts:AssumeRole"
         Principal = {
           Service = "cloudtrail.amazonaws.com"
         }
-        Action = "sts:AssumeRole"
       }
     ]
   })
@@ -41,7 +41,9 @@ resource "aws_iam_policy" "cloudtrail_policy" {
           "logs:PutLogEvents",
           "logs:CreateLogStream"
         ]
-        Resource = [var.cloud_watch_logs_group_arn]
+        Resource = [
+          "arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/cloudtrail/${var.cloud_trail_name}-log-group:*"
+        ]
       },
       {
         Effect   = "Allow"
