@@ -6,7 +6,7 @@ resource "aws_cloudtrail" "main" {
   enable_log_file_validation    = true
 
   cloud_watch_logs_group_arn    =var.cloud_watch_logs_group_arn
-  cloud_watch_logs_role_arn     = "${aws_iam_role.cloudtrail_role.arn}:*"
+  cloud_watch_logs_role_arn     = "arn:aws:logs:ap-south-1:495599733393:log-group:/aws/cloudtrail/Prakash-cloudtrail:*"
 
   event_selector {
     read_write_type              = "All"
