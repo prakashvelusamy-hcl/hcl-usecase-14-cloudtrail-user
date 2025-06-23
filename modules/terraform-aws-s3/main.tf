@@ -1,5 +1,9 @@
 resource "aws_s3_bucket" "log_bucket" {
   bucket = var.cloud_trail_bucket_name
+  tags  = var.project_tag
+}
+resource "aws_s3_bucket_policy" "log_bucket_policy" {
+  bucket = aws_s3_bucket.log_bucket.id
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -23,8 +27,6 @@ resource "aws_s3_bucket" "log_bucket" {
     ]
   })
 }
-
-
 resource "aws_s3_bucket_versioning" "log_bucket_versioning" {
   bucket = aws_s3_bucket.log_bucket.bucket
   versioning_configuration {
