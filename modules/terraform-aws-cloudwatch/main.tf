@@ -4,8 +4,8 @@ resource "aws_cloudwatch_log_group" "cloudtrail_log_group" {
 }
 
 resource "aws_cloudwatch_log_metric_filter" "login_filter" {
-  name           = var.filter_name
-  log_group_name = var.log_group_name
+  name           = "prakash-login"
+  log_group_name = aws_cloudwatch_log_group.cloudtrail_log_group.name
   pattern        = "{ $.eventName = \"ConsoleLogin\" }"
 
   metric_transformation {
