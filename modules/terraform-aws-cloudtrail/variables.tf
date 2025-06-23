@@ -14,3 +14,5 @@ variable "cloud_watch_logs_group_arn" {
 description = "The cloud watch log group arn"
 type = string
 }
+variable "aws_region" {
+}

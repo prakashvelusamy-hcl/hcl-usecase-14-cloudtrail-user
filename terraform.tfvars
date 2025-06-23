@@ -5,3 +5,4 @@ project_tag = {
   Owner       = "dev-team"
 }
 cloud_trail_name = "Prakash-cloudtrail"
+aws_region = "ap-south-1"

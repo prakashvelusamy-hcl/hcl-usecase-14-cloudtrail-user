@@ -10,6 +10,7 @@ cloud_trail_name = var.cloud_trail_name
 project_tag = var.project_tag
 cloud_watch_logs_group_arn = module.cloud_watch.cloud_watch_logs_group_arn
  depends_on = [module.cloud_watch]
+ aws_region = var.aws_region
 }
 
 module "cloud_watch" {

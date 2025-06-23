@@ -10,3 +10,6 @@ variable "cloud_trail_name" {
 description = "The Cloud Trail name" 
 type = string
 }
+
+variable "aws_region" {
+}

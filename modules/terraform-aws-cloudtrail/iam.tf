@@ -17,6 +17,8 @@ resource "aws_iam_role" "cloudtrail_role" {
   tags = var.project_tag
 }
 
+data "aws_caller_identity" "current" {}
+
 resource "aws_iam_policy" "cloudtrail_policy" {
   name        = "CloudTrailLoggingPolicy"
   description = "Policy for CloudTrail to log to S3 and CloudWatch"
