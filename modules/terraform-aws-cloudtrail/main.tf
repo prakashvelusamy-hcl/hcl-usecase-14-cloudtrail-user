@@ -5,15 +5,18 @@ resource "aws_cloudtrail" "main" {
   is_multi_region_trail         = false
   enable_log_file_validation    = true
 
-  # Optional: You can enable logging for CloudWatch Logs
-  cloud_watch_logs_group_arn    = var.cloud_watch_logs_group_arn
+  cloud_watch_logs_group_arn    = aws_cloudwatch_log_group.cloudtrail_log_group.arn
   cloud_watch_logs_role_arn     = aws_iam_role.cloudtrail_role.arn
 
-  # Optional: Enable logging for S3 events
   event_selector {
-    read_write_type = "All"
-    include_management_events = true
+    read_write_type              = "All"
+    include_management_events   = true
   }
 
   tags = var.project_tag
+
+  depends_on = [
+    aws_iam_role_policy_attachment.cloudtrail_policy_attachment,
+    aws_cloudwatch_log_group.cloudtrail_log_group  # Corrected reference to the CloudWatch Log Group
+  ]
 }
