@@ -138,18 +138,12 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-
-      - name: Terraform Plan and Save Output
+      - name: Terraform Plan
+        id: plan
         run: |
-          terraform plan -out=tfplan.binary -input=false
-          terraform show -json tfplan.binary > tfplan.json
-        continue-on-error: true
-        
-      - name: Upload tfplan.json artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: tfplan
-          path: tfplan.json
+           terraform plan -no-color -out=tfplan.binary
+           terraform show tfplan.binary > tfplan.txt
+
 
       # - name: Upload tfplan.json artifact
       #   uses: actions/upload-artifact@v4
@@ -163,14 +157,15 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
-            const plan = fs.readFileSync('tfplan.json', 'utf8');
-            const body = `#### Terraform Plan 📖\n\n\`\`\`json\n${plan.slice(0, 6500)}...\n\`\`\``;
+            const plan = fs.readFileSync('tfplan.txt', 'utf8');
+            const body = `#### Terraform Plan 📖\n\n\`\`\`\n${plan.slice(0, 6500)}...\n\`\`\``;
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: body
             });
+      
 
   terraform-apply:
     name: Terraform Apply
