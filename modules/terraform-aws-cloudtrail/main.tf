@@ -17,6 +17,5 @@ resource "aws_cloudtrail" "main" {
 
   depends_on = [
     aws_iam_role_policy_attachment.cloudtrail_policy_attachment,
-    module.cloud_watch
   ]
 }
