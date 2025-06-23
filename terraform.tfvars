@@ -1,4 +1,4 @@
-cloud_trail_bucket_name = "my-cloudtrail-logs-bucket"
+cloud_trail_bucket_name = "prakash-cloudtrail-logs-bucket"
 project_tag = {
   Environment = "dev"
   Project     = "aws_cloudtrail_event"
