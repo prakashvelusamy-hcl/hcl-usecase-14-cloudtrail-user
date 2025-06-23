@@ -44,7 +44,7 @@ resource "aws_iam_policy" "cloudtrail_policy" {
           "logs:CreateLogStream"
         ]
         Resource = [
-          "arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/cloudtrail/${var.cloud_trail_name}-log-group:*"
+          "arn:aws:logs:ap-south-1:495599733393:log-group:/aws/cloudtrail/Prakash-cloudtrail:*"
         ]
       },
       {
