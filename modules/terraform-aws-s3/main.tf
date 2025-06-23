@@ -9,4 +9,5 @@ resource "aws_s3_bucket" "log_bucket" {
   lifecycle {
     prevent_destroy = true
   }
+  tag  = var.project_tag
 }
