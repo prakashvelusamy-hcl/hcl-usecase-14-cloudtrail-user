@@ -1,6 +1,6 @@
-resource "aws_cloudtrail" "example" {
-  name                          = "example-trail"
-  s3_bucket_name                = "my-cloudtrail-logs-bucket"  # Replace with your S3 bucket name
+resource "aws_cloudtrail" "main" {
+  name                          = var.cloud_trail_name
+  s3_bucket_name                = var.cloud_trail_bucket_name
   include_global_service_events = true
   is_logging                    = true
   is_multi_region_trail         = false

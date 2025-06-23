@@ -4,3 +4,4 @@ project_tag = {
   Project     = "aws_cloudtrail_event"
   Owner       = "dev-team"
 }
+cloud_trail_name = "Prakash-cloudtrail"s
