@@ -141,8 +141,8 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: |
-          terraform plan -no-color -input=false -out=tfplan.binary
-          terraform show -json tfplan.binary > tfplan.json
+           terraform plan -no-color -input=false -out=tfplan.binary
+           terraform show -no-color tfplan.binary > tfplan.txt
 
       # - name: Upload tfplan.json artifact
       #   uses: actions/upload-artifact@v4
