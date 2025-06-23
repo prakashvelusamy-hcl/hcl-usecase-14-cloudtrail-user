@@ -16,3 +16,7 @@ cloud_watch_logs_group_arn = module.cloud_watch.cloud_watch_logs_group_arn
 module "cloud_watch" {
 source = "./modules/terraform-aws-cloudwatch"
 }
+module "sns" {
+source = "./modules/terraform-aws-sns"
+project_tag = var.project_tag
+}
