@@ -1,7 +1,29 @@
 resource "aws_s3_bucket" "log_bucket" {
   bucket = var.cloud_trail_bucket_name
-  tags  = var.project_tag
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect    = "Allow"
+        Action    = "s3:PutObject"
+        Resource  = "arn:aws:s3:::${var.cloud_trail_bucket_name}/*"
+        Principal = {
+          Service = "cloudtrail.amazonaws.com"
+        }
+      },
+      {
+        Effect    = "Allow"
+        Action    = "s3:GetBucketAcl"
+        Resource  = "arn:aws:s3:::${var.cloud_trail_bucket_name}"
+        Principal = {
+          Service = "cloudtrail.amazonaws.com"
+        }
+      }
+    ]
+  })
 }
+
 
 resource "aws_s3_bucket_versioning" "log_bucket_versioning" {
   bucket = aws_s3_bucket.log_bucket.bucket
