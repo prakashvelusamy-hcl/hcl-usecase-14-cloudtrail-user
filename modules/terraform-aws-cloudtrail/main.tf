@@ -5,7 +5,7 @@ resource "aws_cloudtrail" "main" {
   is_multi_region_trail         = false
   enable_log_file_validation    = true
 
-  cloud_watch_logs_group_arn    ="${var.cloud_watch_logs_group_arn}:*"
+  cloud_watch_logs_group_arn    =var.cloud_watch_logs_group_arn
   cloud_watch_logs_role_arn     = aws_iam_role.cloudtrail_role.arn
 
   event_selector {
