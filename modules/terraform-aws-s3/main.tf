@@ -11,7 +11,7 @@ resource "aws_s3_bucket_policy" "log_bucket_policy" {
       {
         Effect    = "Allow"
         Action    = "s3:PutObject"
-        Resource  = "${aws_s3_bucket.cloudtrail_logs.arn}/*"
+        Resource  = "${aws_s3_bucket.log_bucket.arn}/*"
         Principal = {
           Service = "cloudtrail.amazonaws.com"
         }
@@ -19,7 +19,7 @@ resource "aws_s3_bucket_policy" "log_bucket_policy" {
       {
         Effect    = "Allow"
         Action    = "s3:GetBucketAcl"
-        Resource  = "${aws_s3_bucket.cloudtrail_logs.arn}"
+        Resource  = "${aws_s3_bucket.log_bucket.arn}"
         Principal = {
           Service = "cloudtrail.amazonaws.com"
         }
