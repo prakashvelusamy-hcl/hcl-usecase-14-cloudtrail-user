@@ -1,12 +1,12 @@
 resource "aws_cloudwatch_log_group" "cloudtrail_log_group" {
   name              = "/aws/cloudtrail/Prakash-cloudtrail"
-  retention_in_days = 30  # Optional: Set the retention period for logs
+  retention_in_days = 30 
 }
 
 resource "aws_cloudwatch_log_metric_filter" "login_filter" {
   name           = "prakash-login"
   log_group_name = aws_cloudwatch_log_group.cloudtrail_log_group.name
-  pattern        = "{ $.eventName = \"ConsoleLogin\" }"
+  pattern        = "{ $.eventName = \"ConsoleLogin\" && $.responseElements.ConsoleLogin = \"Success\" }"
 
   metric_transformation {
     name      = var.metric_name
