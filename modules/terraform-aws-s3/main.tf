@@ -11,7 +11,7 @@ resource "aws_s3_bucket_policy" "log_bucket_policy" {
       {
         Effect    = "Allow"
         Action    = "s3:PutObject"
-        Resource  = "arn:aws:s3:::${var.cloud_trail_bucket_name}/*"
+        Resource  = "${aws_s3_bucket.cloudtrail_logs.arn}/*"
         Principal = {
           Service = "cloudtrail.amazonaws.com"
         }
@@ -19,19 +19,13 @@ resource "aws_s3_bucket_policy" "log_bucket_policy" {
       {
         Effect    = "Allow"
         Action    = "s3:GetBucketAcl"
-        Resource  = "arn:aws:s3:::${var.cloud_trail_bucket_name}"
+        Resource  = "${aws_s3_bucket.cloudtrail_logs.arn}"
         Principal = {
           Service = "cloudtrail.amazonaws.com"
         }
       }
     ]
   })
-}
-resource "aws_s3_bucket_versioning" "log_bucket_versioning" {
-  bucket = aws_s3_bucket.log_bucket.bucket
-  versioning_configuration {
-    status = "Enabled"
-  }
 }
 
 #resource "aws_s3_bucket_acl" "log_bucket_acl" {
