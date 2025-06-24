@@ -142,7 +142,7 @@ jobs:
         id: plan
         run: |
            terraform plan -no-color -out=tfplan.binary
-           terraform show tfplan.binary > tfplan.txt
+           terraform show -no-color tfplan.binary > tfplan.txt
 
 
       # - name: Upload tfplan.json artifact
